@@ -1,6 +1,7 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import { apiClient } from "@/lib/api-client";
+import { useAuth } from "@/lib/auth-context";
 import { toast } from "sonner";
 
 const WatchlistButton = ({
@@ -13,6 +14,7 @@ const WatchlistButton = ({
                          }: WatchlistButtonProps) => {
     const [added, setAdded] = useState<boolean>(!!isInWatchlist);
     const [isLoading, setIsLoading] = useState(false);
+    const { isAuthenticated } = useAuth();
 
     const label = useMemo(() => {
         if (type === "icon") return added ? "" : "";
@@ -21,6 +23,11 @@ const WatchlistButton = ({
 
     const handleClick = async () => {
         if (isLoading) return;
+        
+        if (!isAuthenticated) {
+            toast.error("Please sign in to use watchlist features");
+            return;
+        }
         
         setIsLoading(true);
         try {

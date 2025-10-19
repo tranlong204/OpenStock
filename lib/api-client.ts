@@ -100,6 +100,18 @@ class ApiClient {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
+      
+      // Handle specific error cases
+      if (response.status === 401) {
+        throw new Error("Authentication required. Please sign in.");
+      } else if (response.status === 403) {
+        throw new Error("Access denied. You don't have permission to perform this action.");
+      } else if (response.status === 404) {
+        throw new Error("Resource not found.");
+      } else if (response.status >= 500) {
+        throw new Error("Server error. Please try again later.");
+      }
+      
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
