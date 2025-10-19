@@ -1,0 +1,125 @@
+
+> Openstock@0.1.0 dev
+> next dev --turbopack -H 0.0.0.0
+
+   ▲ Next.js 15.5.4 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://0.0.0.0:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 767ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1681ms
+ GET / 200 in 80ms
+ ⚠ Cross origin request detected from 192.168.1.88 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ ✓ Compiled /favicon.ico in 275ms
+ GET /sign-in 200 in 279ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 424ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 234ms
+ GET / 200 in 42ms
+ GET / 200 in 45ms
+ ✓ Compiled /stocks/[symbol] in 193ms
+ GET /stocks/TSLA 200 in 514ms
+ GET / 200 in 81ms
+ GET /sign-in 200 in 37ms
+ GET / 200 in 50ms
+ GET / 200 in 50ms
+ GET / 200 in 80ms
+ GET /sign-in 200 in 36ms
+ GET / 200 in 45ms
+ GET / 200 in 44ms
+ GET / 200 in 118ms
+ GET /sign-in 200 in 38ms
+ GET / 200 in 58ms
+ GET / 200 in 59ms
+ GET / 200 in 68ms
+ GET /sign-in 200 in 34ms
+ GET /sign-in 200 in 86ms
+ GET / 200 in 41ms
+ GET / 200 in 46ms
+ GET / 200 in 51ms
+ GET / 200 in 30ms
+ GET / 200 in 88ms
+ GET /sign-in 200 in 42ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 234ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 221ms
+ GET / 200 in 36ms
+ GET / 200 in 27ms
+ GET / 200 in 98ms
+ GET /sign-in 200 in 33ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 243ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 224ms
+ GET / 200 in 33ms
+ GET / 200 in 28ms
+ GET / 200 in 73ms
+ GET /sign-in 200 in 40ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 237ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 226ms
+ GET / 200 in 34ms
+ GET / 200 in 27ms
+ GET / 200 in 63ms
+ GET /sign-in 200 in 34ms
+ GET / 200 in 48ms
+ GET / 200 in 36ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 231ms
+ GET / 200 in 88ms
+ GET /sign-in 200 in 33ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 246ms
+ GET / 200 in 40ms
+ GET / 200 in 41ms
+ GET / 200 in 88ms
+ GET /sign-in 200 in 39ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 234ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 223ms
+ GET / 200 in 34ms
+ GET / 200 in 28ms
+ GET / 200 in 84ms
+ GET /sign-in 200 in 37ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 241ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 224ms
+ GET / 200 in 34ms
+ GET / 200 in 35ms
+ GET / 200 in 75ms
+ GET /sign-in 200 in 31ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 243ms
+ GET / 200 in 33ms
+ GET / 200 in 28ms
+ GET / 200 in 94ms
+ GET /sign-in 200 in 36ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 251ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 224ms
+ GET / 200 in 35ms
+ GET / 200 in 52ms
+ GET / 200 in 99ms
+ GET /sign-in 200 in 34ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 248ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 247ms
+ GET / 200 in 34ms
+ GET / 200 in 35ms
+ GET /stocks/TSLA 200 in 60ms
+ ✓ Compiled in 190ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/api-client.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 85ms
+ GET /stocks/TSLA 200 in 308ms
+ GET /sign-in 200 in 36ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 238ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 228ms
+ GET /sign-in 200 in 93ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 233ms
+ GET / 200 in 41ms
+ GET / 200 in 38ms
+ GET /stocks/TSLA 200 in 57ms
+ GET /stocks/TSLA 200 in 67ms
+ GET /sign-in 200 in 43ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 227ms
+ GET / 200 in 40ms
+ GET / 200 in 36ms
+ GET /stocks/TSLA 200 in 58ms
+ ✓ Compiled in 114ms
+ GET /stocks/TSLA 200 in 141ms
+ ✓ Compiled in 144ms
+ ✓ Compiled /stocks/[symbol] in 47ms
+ GET /stocks/TSLA 200 in 195ms
+ GET /stocks/TSLA 200 in 87ms
