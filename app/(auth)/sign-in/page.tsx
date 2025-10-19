@@ -4,15 +4,16 @@ import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import InputField from '@/components/forms/InputField';
 import FooterLink from '@/components/forms/FooterLink';
-import {signInWithEmail, signUpWithEmail} from "@/lib/actions/auth.actions";
-import {toast} from "sonner";
-import {signInEmail} from "better-auth/api";
-import {useRouter} from "next/navigation";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import OpenDevSocietyBranding from "@/components/OpenDevSocietyBranding";
 import React from "react";
+import { useAuth } from "@/lib/auth-context";
 
 const SignIn = () => {
-    const router = useRouter()
+    const router = useRouter();
+    const { signIn } = useAuth();
+    
     const {
         register,
         handleSubmit,
@@ -27,13 +28,14 @@ const SignIn = () => {
 
     const onSubmit = async (data: SignInFormData) => {
         try {
-            const result = await signInWithEmail(data);
+            const result = await signIn(data.email, data.password);
             if (result.success) {
+                toast.success('Signed in successfully!');
                 router.push('/');
                 return;
             }
             toast.error('Sign in failed', {
-                description: result.error ?? 'Invalid email or password.',
+                description: result.message ?? 'Invalid email or password.',
             });
         } catch (e) {
             console.error(e);

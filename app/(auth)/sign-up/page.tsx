@@ -7,14 +7,16 @@ import SelectField from "@/components/forms/SelectField";
 import {INVESTMENT_GOALS, PREFERRED_INDUSTRIES, RISK_TOLERANCE_OPTIONS} from "@/lib/constants";
 import {CountrySelectField} from "@/components/forms/CountrySelectField";
 import FooterLink from "@/components/forms/FooterLink";
-import {signUpWithEmail} from "@/lib/actions/auth.actions";
 import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 import OpenDevSocietyBranding from "@/components/OpenDevSocietyBranding";
 import React from "react";
+import { useAuth } from "@/lib/auth-context";
 
 const SignUp = () => {
-    const router = useRouter()
+    const router = useRouter();
+    const { signUp } = useAuth();
+    
     const {
         register,
         handleSubmit,
@@ -35,13 +37,14 @@ const SignUp = () => {
 
     const onSubmit = async (data: SignUpFormData) => {
         try {
-            const result = await signUpWithEmail(data);
+            const result = await signUp(data);
             if (result.success) {
+                toast.success('Account created successfully!');
                 router.push('/');
                 return;
             }
             toast.error('Sign up failed', {
-                description: result.error ?? 'We could not create your account.',
+                description: result.message ?? 'We could not create your account.',
             });
         } catch (e) {
             console.error(e);

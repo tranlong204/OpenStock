@@ -1,6 +1,7 @@
 "use client";
 import React, { useMemo, useState } from "react";
-
+import { apiClient } from "@/lib/api-client";
+import { toast } from "sonner";
 
 const WatchlistButton = ({
                              symbol,
@@ -11,16 +12,35 @@ const WatchlistButton = ({
                              onWatchlistChange,
                          }: WatchlistButtonProps) => {
     const [added, setAdded] = useState<boolean>(!!isInWatchlist);
+    const [isLoading, setIsLoading] = useState(false);
 
     const label = useMemo(() => {
         if (type === "icon") return added ? "" : "";
         return added ? "Remove from Watchlist" : "Add to Watchlist";
     }, [added, type]);
 
-    const handleClick = () => {
-        const next = !added;
-        setAdded(next);
-        onWatchlistChange?.(symbol, next);
+    const handleClick = async () => {
+        if (isLoading) return;
+        
+        setIsLoading(true);
+        try {
+            if (added) {
+                await apiClient.removeFromWatchlist(symbol);
+                toast.success(`${symbol} removed from watchlist`);
+            } else {
+                await apiClient.addToWatchlist(symbol, company);
+                toast.success(`${symbol} added to watchlist`);
+            }
+            
+            const next = !added;
+            setAdded(next);
+            onWatchlistChange?.(symbol, next);
+        } catch (error) {
+            toast.error(`Failed to ${added ? 'remove from' : 'add to'} watchlist`);
+            console.error('Watchlist error:', error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     if (type === "icon") {

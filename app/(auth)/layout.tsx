@@ -1,15 +1,39 @@
+'use client';
+
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import {headers} from "next/headers";
-import {redirect} from "next/navigation";
-import {auth} from "@/lib/better-auth/auth";
+import { useAuth } from "@/lib/auth-context";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-const Layout = async ({ children }: { children : React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
+    const { isAuthenticated, isLoading } = useAuth();
+    const router = useRouter();
 
-    const session = await auth.api.getSession({headers: await headers()});
+    useEffect(() => {
+        if (!isLoading && isAuthenticated) {
+            router.push('/');
+        }
+    }, [isAuthenticated, isLoading, router]);
 
-    if (session?.user) redirect('/')
+    if (isLoading) {
+        return (
+            <main className="auth-layout">
+                <div className="flex items-center justify-center min-h-screen">
+                    <div className="text-center">
+                        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-teal-500 mx-auto"></div>
+                        <p className="mt-4 text-gray-400">Loading...</p>
+                    </div>
+                </div>
+            </main>
+        );
+    }
+
+    if (isAuthenticated) {
+        return null; // Will redirect
+    }
+
     return (
         <main className="auth-layout">
             <section className="auth-left-section scrollbar-hide-default">
