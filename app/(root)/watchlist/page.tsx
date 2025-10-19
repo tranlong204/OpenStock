@@ -49,8 +49,8 @@ const WatchlistPage = () => {
                     return {
                         ...item,
                         currentPrice: priceData.currentPrice,
-                        changePercent: priceData.changePercent || 0,
-                        change: priceData.change || 0
+                        changePercent: priceData.priceChangePercent || 0,
+                        change: priceData.priceChange || 0
                     };
                 } catch (error) {
                     console.error(`Failed to fetch price for ${item.symbol}:`, error);
