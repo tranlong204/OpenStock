@@ -13,21 +13,22 @@
     <img src="https://img.shields.io/badge/-Tailwind%20CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=38B2AC"/>
     <img src="https://img.shields.io/badge/-shadcn/ui-black?style=for-the-badge&logoColor=white&logo=shadcnui&color=000000"/>
     <img src="https://img.shields.io/badge/-Radix%20UI-black?style=for-the-badge&logoColor=white&logo=radixui&color=000000"/>
-    <img src="https://img.shields.io/badge/-Better%20Auth-black?style=for-the-badge&logoColor=white&logo=betterauth&color=000000"/>
+    <img src="https://img.shields.io/badge/-Spring%20Boot-black?style=for-the-badge&logoColor=white&logo=spring&color=6DB33F"/>
+    <img src="https://img.shields.io/badge/-JWT-black?style=for-the-badge&logoColor=white&logo=jsonwebtokens&color=000000"/>
     <img src="https://img.shields.io/badge/-MongoDB-black?style=for-the-badge&logoColor=white&logo=mongodb&color=00A35C"/>
-    <img src="https://img.shields.io/badge/-Inngest-black?style=for-the-badge&logoColor=white&logo=inngest&color=000000"/>
-    <img src="https://img.shields.io/badge/-Nodemailer-black?style=for-the-badge&logoColor=white&logo=gmail&color=EA4335"/>
     <img src="https://img.shields.io/badge/-TradingView-black?style=for-the-badge&logoColor=white&logo=tradingview&color=2962FF"/>
     <img src="https://img.shields.io/badge/-Finnhub-black?style=for-the-badge&logoColor=white&color=30B27A"/>
     <img src="https://img.shields.io/badge/-CodeRabbit-black?style=for-the-badge&logoColor=white&logo=coderabbit&color=9146FF"/>
   </div>
 </div>
 
-# OpenStock
+# OpenStock Frontend
 
 OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.
 
-Note: OpenStock is community-built and not a brokerage. Market data may be delayed based on provider rules and your configuration. Nothing here is financial advice.
+**Note**: This is the frontend repository. The backend API is now powered by Spring Boot. See the [Backend Repository](https://github.com/tranlong204/OpenStock-Backend) for the API server.
+
+**Important**: OpenStock is community-built and not a brokerage. Market data may be delayed based on provider rules and your configuration. Nothing here is financial advice.
 
 ## 📋 Table of Contents
 
@@ -36,25 +37,24 @@ Note: OpenStock is community-built and not a brokerage. Market data may be delay
 3. ⚙️ [Tech Stack](#tech-stack)
 4. 🔋 [Features](#features)
 5. 🤸 [Quick Start](#quick-start)
-6. 🐳 [Docker Setup](#docker-setup)
-7. 🔐 [Environment Variables](#environment-variables)
-8. 🧱 [Project Structure](#project-structure)
-9. 📡 [Data & Integrations](#data--integrations)
-10. 🧪 [Scripts & Tooling](#scripts--tooling)
-11. 🤝 [Contributing](#contributing)
-12. 🛡️ [Security](#security)
-13. 📜 [License](#license)
-14. 🙏 [Acknowledgements](#acknowledgements)
+6. 🔐 [Environment Variables](#environment-variables)
+7. 🧱 [Project Structure](#project-structure)
+8. 📡 [Data & Integrations](#data--integrations)
+9. 🧪 [Scripts & Tooling](#scripts--tooling)
+10. 🤝 [Contributing](#contributing)
+11. 🛡️ [Security](#security)
+12. 📜 [License](#license)
+13. 🙏 [Acknowledgements](#acknowledgements)
 
 ## ✨ Introduction
 
-OpenStock is a modern stock market app powered by Next.js (App Router), shadcn/ui and Tailwind CSS, Better Auth for authentication, MongoDB for persistence, Finnhub for market data, and TradingView widgets for charts and market views.
+OpenStock Frontend is a modern React application built with Next.js (App Router), shadcn/ui, and Tailwind CSS. It communicates with a Spring Boot backend API for authentication, data persistence, and market data integration.
 
 ## 🌍 Open Dev Society Manifesto <a name="manifesto"></a>
 
-We live in a world where knowledge is hidden behind paywalls. Where tools are locked in subscriptions. Where information is twisted by bias. Where newcomers are told they’re not “good enough” to build.
+We live in a world where knowledge is hidden behind paywalls. Where tools are locked in subscriptions. Where information is twisted by bias. Where newcomers are told they're not "good enough" to build.
 
-We believe there’s a better way.
+We believe there's a better way.
 
 - Our Belief: Technology should belong to everyone. Knowledge should be open, free, and accessible. Communities should welcome newcomers with trust, not gatekeeping.
 - Our Mission: Build free, open-source projects that make a real difference:
@@ -63,71 +63,74 @@ We believe there’s a better way.
     - Communities where every beginner is guided, not judged.
     - Resources that run on trust, not profit.
 - Our Promise: We will never lock knowledge. We will never charge for access. We will never trade trust for money. We run on transparency, donations, and the strength of our community.
-- Our Call: If you’ve ever felt you didn’t belong, struggled to find free resources, or wanted to build something meaningful — you belong here.
+- Our Call: If you've ever felt you didn't belong, struggled to find free resources, or wanted to build something meaningful — you belong here.
 
 Because the future belongs to those who build it openly.
 
 ## ⚙️ Tech Stack
 
-Core
+**Frontend**
 - Next.js 15 (App Router), React 19
 - TypeScript
 - Tailwind CSS v4 (via @tailwindcss/postcss)
 - shadcn/ui + Radix UI primitives
 - Lucide icons
 
-Auth & Data
-- Better Auth (email/password) with MongoDB adapter
-- MongoDB + Mongoose
-- Finnhub API for symbols, profiles, and market news
+**Backend Integration**
+- Spring Boot REST API (separate repository)
+- JWT authentication
+- MongoDB for data persistence
+- Finnhub API for market data
 - TradingView embeddable widgets
 
-Automation & Comms
-- Inngest (events, cron, AI inference via Gemini)
-- Nodemailer (Gmail transport)
+**Development Tools**
 - next-themes, cmdk (command palette), react-hook-form
+- ESLint, TypeScript strict mode
 
-Language composition
+**Language Composition**
 - TypeScript (~93.4%), CSS (~6%), JavaScript (~0.6%)
 
 ## 🔋 Features
 
-- Authentication
-    - Email/password auth with Better Auth + MongoDB adapter
-    - Protected routes enforced via Next.js middleware
-- Global search and Command + K palette
-    - Fast stock search backed by Finnhub
+- **Authentication**
+    - JWT-based authentication via Spring Boot backend
+    - Protected routes with React context
+    - Secure token management
+
+- **Global Search and Command + K Palette**
+    - Fast stock search backed by Finnhub API
     - Popular stocks when idle; debounced querying
-- Watchlist
-    - Per-user watchlist stored in MongoDB (unique symbol per user)
-- Stock details
+    - Keyboard shortcuts (Cmd/Ctrl + K)
+
+- **Watchlist Management**
+    - Per-user watchlist stored in MongoDB via backend API
+    - Real-time updates and synchronization
+
+- **Stock Details**
     - TradingView symbol info, candlestick/advanced charts, baseline, technicals
     - Company profile and financials widgets
-- Market overview
+    - Real-time price updates
+
+- **Market Overview**
     - Heatmap, quotes, and top stories (TradingView widgets)
-- Personalized onboarding
-    - Collects country, investment goals, risk tolerance, preferred industry
-- Email & automation
-    - AI-personalized welcome email (Gemini via Inngest)
-    - Daily news summary emails (cron) personalized using user watchlists
-- Polished UI
-    - shadcn/ui components, Radix primitives, Tailwind v4 design tokens
+    - Market news integration
+
+- **Personalized Experience**
     - Dark theme by default
-- Keyboard shortcut
-    - Cmd/Ctrl + K for quick actions/search
+    - Responsive design with shadcn/ui components
+    - Smooth animations and transitions
 
 ## 🤸 Quick Start
 
-Prerequisites
+### Prerequisites
 - Node.js 20+ and pnpm or npm
-- MongoDB connection string (MongoDB Atlas or local via Docker Compose)
-- Finnhub API key (free tier supported; real-time may require paid)
-- Gmail account for email (or update Nodemailer transport)
-- Optional: Google Gemini API key (for AI-generated welcome intros)
+- Spring Boot backend running (see [Backend Repository](https://github.com/tranlong204/OpenStock-Backend))
+- MongoDB instance (local or Atlas)
+- Finnhub API key (free tier supported)
 
-Clone and install
+### Clone and Install
 ```bash
-git clone https://github.com/Open-Dev-Society/OpenStock.git
+git clone https://github.com/tranlong204/OpenStock.git
 cd OpenStock
 
 # choose one:
@@ -136,151 +139,53 @@ pnpm install
 npm install
 ```
 
-Configure environment
-- Create a `.env` file (see [Environment Variables](#environment-variables)).
-- Verify DB connectivity:
-```bash
-pnpm test:db
-# or
-npm run test:db
+### Configure Environment
+Create a `.env.local` file in the project root:
+```env
+# Backend API Configuration
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api
+
+# Optional: Override default API endpoints
+NEXT_PUBLIC_API_TIMEOUT=10000
 ```
 
-Run development
+### Start Development
 ```bash
-# Next.js dev (Turbopack)
+# Start the frontend development server
 pnpm dev
 # or
 npm run dev
 ```
 
-Run Inngest locally (workflows, cron, AI)
+### Start Backend
+Make sure the Spring Boot backend is running:
 ```bash
-npx inngest-cli@latest dev
-```
-
-Build & start (production)
-```bash
-pnpm build && pnpm start
-# or
-npm run build && npm start
+# In the backend repository
+cd ../OpenStock-Backend
+./start.sh
 ```
 
 Open http://localhost:3000 to view the app.
 
-## 🐳 Docker Setup
-
-You can run OpenStock and MongoDB easily with Docker Compose.
-
-1) Ensure Docker and Docker Compose are installed.
-
-2) docker-compose.yml includes two services:
-- openstock (this app)
-- mongodb (MongoDB database with a persistent volume)
-
-3) Create your `.env` (see examples below). For the Docker setup, use a local connection string like:
-```env
-MONGODB_URI=mongodb://root:example@mongodb:27017/openstock?authSource=admin
-```
-
-4) Start the stack:
-```bash
-# from the repository root
-docker compose up -d mongodb && docker compose up -d --build
-```
-
-5) Access the app:
-- App: http://localhost:3000
-- MongoDB is available inside the Docker network at host mongodb:27017
-
-Notes
-- The app service depends_on the mongodb service.
-- Credentials are defined in Compose for the MongoDB root user; authSource=admin is required on the connection string for root.
-- Data persists across restarts via the docker volume.
-
-Optional: Example MongoDB service definition used in this project:
-```yaml
-services:
-  mongodb:
-    image: mongo:7
-    container_name: mongodb
-    restart: unless-stopped
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-volumes:
-  mongo-data:
-```
-
 ## 🔐 Environment Variables
 
-Create `.env` at the project root. Choose either a hosted MongoDB (Atlas) URI or the local Docker URI.
+Create `.env.local` at the project root:
 
-Hosted (MongoDB Atlas):
 ```env
-# Core
-NODE_ENV=development
+# Backend API Configuration
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api
 
-# Database (Atlas)
-MONGODB_URI=mongodb+srv://<user>:<pass>@<cluster>/<db>?retryWrites=true&w=majority
+# Optional: API timeout (milliseconds)
+NEXT_PUBLIC_API_TIMEOUT=10000
 
-# Better Auth
-BETTER_AUTH_SECRET=your_better_auth_secret
-BETTER_AUTH_URL=http://localhost:3000
-
-# Finnhub
-FINNHUB_API_KEY=your_finnhub_key
-# Optional client-exposed variant if needed by client code:
-NEXT_PUBLIC_FINNHUB_API_KEY=
-FINNHUB_BASE_URL=https://finnhub.io/api/v1
-
-# Inngest AI (Gemini)
-GEMINI_API_KEY=your_gemini_api_key
-
-# Email (Nodemailer via Gmail; consider App Passwords if 2FA)
-NODEMAILER_EMAIL=youraddress@gmail.com
-NODEMAILER_PASSWORD=your_gmail_app_password
+# Optional: Enable debug logging
+NEXT_PUBLIC_DEBUG=false
 ```
 
-Local (Docker Compose) MongoDB:
-```env
-# Core
-NODE_ENV=development
-
-# Database (Docker)
-MONGODB_URI=mongodb://root:example@mongodb:27017/openstock?authSource=admin
-
-# Better Auth
-BETTER_AUTH_SECRET=your_better_auth_secret
-BETTER_AUTH_URL=http://localhost:3000
-
-# Finnhub
-FINNHUB_API_KEY=your_finnhub_key
-NEXT_PUBLIC_FINNHUB_API_KEY=
-FINNHUB_BASE_URL=https://finnhub.io/api/v1
-
-# Inngest AI (Gemini)
-GEMINI_API_KEY=your_gemini_api_key
-
-# Email (Nodemailer via Gmail; consider App Passwords if 2FA)
-NODEMAILER_EMAIL=youraddress@gmail.com
-NODEMAILER_PASSWORD=your_gmail_app_password
-```
-
-Notes
-- Keep private keys server-side whenever possible.
-- If using `NEXT_PUBLIC_` variables, remember they are exposed to the browser.
-- In production, prefer a dedicated SMTP provider over a personal Gmail.
-- Do not hardcode secrets in the Dockerfile; use `.env` and Compose.
+**Notes:**
+- All `NEXT_PUBLIC_` variables are exposed to the browser
+- The backend handles all sensitive operations (authentication, database access, API keys)
+- For production, update `NEXT_PUBLIC_API_BASE_URL` to point to your deployed backend
 
 ## 🧱 Project Structure
 
@@ -295,24 +200,20 @@ app/
     page.tsx
     help/page.tsx
     stocks/[symbol]/page.tsx
-  api/inngest/route.ts
   globals.css
   layout.tsx
 components/
   ui/…          # shadcn/radix primitives (button, dialog, command, input, etc.)
   forms/…       # InputField, SelectField, CountrySelectField, FooterLink
   Header.tsx, Footer.tsx, SearchCommand.tsx, WatchlistButton.tsx, …
-database/
-  models/watchlist.model.ts
-  mongoose.ts
 lib/
-  actions/…     # server actions (auth, finnhub, user, watchlist)
-  better-auth/…
-  inngest/…     # client, functions, prompts
-  nodemailer/…  # transporter, email templates
+  api-client.ts     # Centralized API client for backend communication
+  auth-context.tsx  # JWT authentication context
+  config.ts         # API configuration and endpoints
   constants.ts, utils.ts
-scripts/
-  test-db.mjs
+hooks/
+  useDebounce.ts
+  useTradingViewWidget.tsx
 types/
   global.d.ts
 next.config.ts          # i.ibb.co image domain allowlist
@@ -323,39 +224,35 @@ public/assets/images/   # logos and screenshots
 
 ## 📡 Data & Integrations
 
-- Finnhub
-    - Stock search, company profiles, and market news.
-    - Set `FINNHUB_API_KEY` and `FINNHUB_BASE_URL` (default: https://finnhub.io/api/v1).
-    - Free tiers may return delayed quotes; respect rate limits and terms.
+- **Spring Boot Backend**
+    - RESTful API for all data operations
+    - JWT authentication and authorization
+    - MongoDB integration for persistence
+    - Finnhub API integration for market data
 
-- TradingView
-    - Embeddable widgets used for charts, heatmap, quotes, and timelines.
-    - External images from `i.ibb.co` are allowlisted in `next.config.ts`.
+- **Finnhub**
+    - Stock search, company profiles, and market news
+    - Integrated via backend API
+    - Free tiers may return delayed quotes; respect rate limits
 
-- Better Auth + MongoDB
-    - Email/password with MongoDB adapter.
-    - Session validation via middleware; most routes are protected, with public exceptions for `sign-in`, `sign-up`, assets and Next internals.
+- **TradingView**
+    - Embeddable widgets for charts, heatmap, quotes, and timelines
+    - External images from `i.ibb.co` are allowlisted in `next.config.ts`
 
-- Inngest
-    - Workflows:
-        - `app/user.created` → AI-personalized Welcome Email
-        - Cron `0 12 * * *` → Daily News Summary per user
-    - Local dev: `npx inngest-cli@latest dev`.
-
-- Email (Nodemailer)
-    - Gmail transport. Update credentials or switch to your SMTP provider.
-    - Templates for welcome and news summary emails.
+- **Authentication Flow**
+    - JWT tokens managed via React context
+    - Automatic token refresh and logout on expiration
+    - Protected routes with authentication checks
 
 ## 🧪 Scripts & Tooling
 
-Package scripts
+**Package Scripts**
 - `dev`: Next.js dev server with Turbopack
 - `build`: Production build (Turbopack)
 - `start`: Run production server
 - `lint`: ESLint
-- `test:db`: Validate DB connectivity
 
-Developer experience
+**Developer Experience**
 - TypeScript strict mode
 - Tailwind CSS v4 (no separate tailwind.config needed)
 - shadcn/ui components with Radix primitives
@@ -363,46 +260,52 @@ Developer experience
 
 ## 🤝 Contributing
 
-You belong here. Whether you’re a student, a self-taught dev, or a seasoned engineer — contributions are welcome.
+You belong here. Whether you're a student, a self-taught dev, or a seasoned engineer — contributions are welcome.
 
 - Open an issue to discuss ideas and bugs
-- Look for “good first issue” or “help wanted”
+- Look for "good first issue" or "help wanted"
 - Keep PRs focused; add screenshots for UI changes
-- Be kind, guide beginners, no gatekeeping — that’s the ODS way
+- Be kind, guide beginners, no gatekeeping — that's the ODS way
 
 ## 🛡️ Security
 
 If you discover a vulnerability:
 - Do not open a public issue
 - Email: opendevsociety@cc.cc
-- We’ll coordinate responsible disclosure and patch swiftly
+- We'll coordinate responsible disclosure and patch swiftly
 
 ## 📜 License
 
-OpenStock is and will remain free and open for everyone. A formal open-source license will be added to this repository; until then, contributions are accepted under our commitment to openness and transparency.
+OpenStock is and will remain free and open for everyone. This project is licensed under AGPL-3.0; if you modify, redistribute, or deploy it (including as a web service), you must release your source code under the same license and credit the original authors.
 
 ## 🙏 Acknowledgements
 
 - Finnhub for accessible market data
 - TradingView for embeddable market widgets
 - shadcn/ui, Radix UI, Tailwind CSS, Next.js community
-- Inngest for dependable background jobs and workflows
-- Better Auth for simple and secure authentication
+- Spring Boot community for robust backend framework
 - All contributors who make open tools possible
 
 — Built openly, for everyone, forever free. Open Dev Society.
 
-> © Open Dev Society. This project is licensed under AGPL-3.0; if you modify, redistribute, or deploy it (including as a web service), you must release your source code under the same license and credit the original authors.
-
 ## Our Honourable Contributors
-- [ravixalgorithm](https://github.com/ravixalgorithm) - Developed the entire application from the ground up, including authentication, UI design, API and AI integration, and deployment.
-- [Priyanshuu00007](https://github.com/Priyanshuu00007) - Created the official OpenStock logo and contributed to the project’s visual identity.
-- [chinnsenn](https://github.com/chinnsenn) - Set up Docker configuration for the repository, ensuring a smooth development and deployment process.
-- [koevoet1221](https://github.com/koevoet1221) - Resolved MongoDB Docker build issues, improving the project’s overall stability and reliability.
 
-## Special thanks
+- [ravixalgorithm](https://github.com/ravixalgorithm) - Developed the entire application from the ground up, including authentication, UI design, API and AI integration, and deployment.
+- [Priyanshuu00007](https://github.com/Priyanshuu00007) - Created the official OpenStock logo and contributed to the project's visual identity.
+- [chinnsenn](https://github.com/chinnsenn) - Set up Docker configuration for the repository, ensuring a smooth development and deployment process.
+- [koevoet1221](https://github.com/koevoet1221) - Resolved MongoDB Docker build issues, improving the project's overall stability and reliability.
+
+## Special Thanks
+
 Huge thanks to [Adrian Hajdin (JavaScript Mastery)](https://github.com/adrianhajdin) — his excellent Stock Market App tutorial was instrumental in building OpenStock for the open-source community under the Open Dev Society.
 
 GitHub: [adrianhajdin](https://github.com/adrianhajdin)
 YouTube tutorial: [Stock Market App Tutorial](https://www.youtube.com/watch?v=gu4pafNCXng)
 YouTube channel: [JavaScript Mastery](https://www.youtube.com/@javascriptmastery)
+
+## Backend Repository
+
+The backend API is now powered by Spring Boot and is available in a separate repository:
+- **Backend Repository**: [https://github.com/tranlong204/OpenStock-Backend](https://github.com/tranlong204/OpenStock-Backend)
+- **API Documentation**: Available in the backend repository
+- **Deployment**: Both frontend and backend can be deployed independently
