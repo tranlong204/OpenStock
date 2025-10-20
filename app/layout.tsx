@@ -32,7 +32,6 @@ export default function RootLayout({
             >
                 <AuthProvider>
                     {children}
-                    <SessionTimeoutWarning warningTimeMinutes={5} />
                 </AuthProvider>
                 <Toaster/>
             </body>
