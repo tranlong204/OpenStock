@@ -29,37 +29,52 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
+    console.log('AuthProvider useEffect running');
+    
     // Set up auth error callback
     apiClient.setOnAuthError(() => {
+      console.log('Auth error callback triggered');
       clearAuth();
     });
 
     // Check for existing token on mount
     const existingToken = localStorage.getItem('auth_token');
+    console.log('Existing token:', existingToken ? 'exists' : 'none');
+    
     if (existingToken) {
       setToken(existingToken);
       apiClient.setToken(existingToken);
       // Try to get user info
       apiClient.getCurrentUser()
-        .then(setUser)
+        .then((user) => {
+          console.log('Token validation successful:', user);
+          setUser(user);
+        })
         .catch((error) => {
           console.log('Token validation failed:', error);
           // Only clear auth if it's a 401 error (token expired)
           if (error.message.includes('401') || error.message.includes('Authentication required')) {
+            console.log('Clearing auth due to 401 error');
             clearAuth();
           } else {
             // For other errors, just set loading to false
+            console.log('Setting loading to false due to non-401 error');
             setIsLoading(false);
           }
         })
-        .finally(() => setIsLoading(false));
+        .finally(() => {
+          console.log('Setting loading to false');
+          setIsLoading(false);
+        });
     } else {
+      console.log('No token, setting loading to false');
       setIsLoading(false);
     }
 
     // Set up periodic token validation (every 5 minutes)
     const tokenValidationInterval = setInterval(() => {
       if (token && user) {
+        console.log('Running periodic token validation');
         // Validate token by making a lightweight API call
         apiClient.getCurrentUser()
           .then(setUser)
