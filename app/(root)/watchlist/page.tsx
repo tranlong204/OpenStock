@@ -348,7 +348,8 @@ const WatchlistPage = () => {
                                                 symbol={item.symbol}
                                                 company={item.company}
                                                 isInWatchlist={true}
-                                                type="icon"
+                                                type="button"
+                                                showTrashIcon={true}
                                                 onWatchlistChange={handleWatchlistChange}
                                             />
                                             <a
