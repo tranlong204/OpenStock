@@ -21,6 +21,7 @@ const WatchlistPage = () => {
     const [watchlist, setWatchlist] = useState<WatchlistItemWithPrice[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [loadingPrices, setLoadingPrices] = useState(false);
+    const [isRefreshing, setIsRefreshing] = useState(false);
     const { isAuthenticated } = useAuth();
 
     useEffect(() => {
@@ -91,6 +92,19 @@ const WatchlistPage = () => {
         if (!isAdded) {
             // Remove from local state
             setWatchlist(prev => prev.filter(item => item.symbol !== symbol));
+        }
+    };
+
+    const handleRefresh = async () => {
+        setIsRefreshing(true);
+        try {
+            await fetchWatchlist();
+            toast.success('Watchlist refreshed successfully');
+        } catch (error) {
+            console.error('Failed to refresh watchlist:', error);
+            toast.error('Failed to refresh watchlist');
+        } finally {
+            setIsRefreshing(false);
         }
     };
 
@@ -189,7 +203,31 @@ const WatchlistPage = () => {
                 <h1 className="text-2xl font-bold text-gray-100">My Watchlist</h1>
                 <div className="flex items-center gap-4">
                     <span className="text-gray-400">{watchlist.length} {watchlist.length === 1 ? 'stock' : 'stocks'}</span>
-                    {loadingPrices && (
+                    <button
+                        onClick={handleRefresh}
+                        disabled={isRefreshing || loadingPrices}
+                        className="flex items-center gap-2 px-3 py-2 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-gray-300 hover:text-gray-100 rounded-lg transition-colors"
+                        title="Refresh watchlist data"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                            />
+                        </svg>
+                        <span className="text-sm font-medium">
+                            {isRefreshing ? 'Refreshing...' : 'Refresh'}
+                        </span>
+                    </button>
+                    {loadingPrices && !isRefreshing && (
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-teal-500"></div>
                     )}
                 </div>
