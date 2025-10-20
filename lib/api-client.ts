@@ -61,6 +61,7 @@ export interface WatchlistItem {
 class ApiClient {
   private baseUrl: string;
   private token: string | null = null;
+  private onAuthError?: () => void;
 
   constructor(baseUrl: string = config.API_BASE_URL) {
     this.baseUrl = baseUrl;
@@ -76,6 +77,10 @@ class ApiClient {
         localStorage.removeItem(config.TOKEN_STORAGE_KEY);
       }
     }
+  }
+
+  setOnAuthError(callback: () => void) {
+    this.onAuthError = callback;
   }
 
   private async request<T>(
@@ -103,6 +108,11 @@ class ApiClient {
       
       // Handle specific error cases
       if (response.status === 401) {
+        // Clear auth state and notify auth context
+        this.setToken(null);
+        if (this.onAuthError) {
+          this.onAuthError();
+        }
         throw new Error("Authentication required. Please sign in.");
       } else if (response.status === 403) {
         throw new Error("Access denied. You don't have permission to perform this action.");

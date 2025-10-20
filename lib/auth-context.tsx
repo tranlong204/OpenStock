@@ -11,6 +11,7 @@ interface AuthContextType {
   signUp: (data: SignUpFormData) => Promise<AuthResponse>;
   signOut: () => Promise<void>;
   isAuthenticated: boolean;
+  clearAuth: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,6 +22,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Set up auth error callback
+    apiClient.setOnAuthError(() => {
+      clearAuth();
+    });
+
     // Check for existing token on mount
     const existingToken = localStorage.getItem('auth_token');
     if (existingToken) {
@@ -31,15 +37,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .then(setUser)
         .catch(() => {
           // Token might be expired, clear it
-          localStorage.removeItem('auth_token');
-          setToken(null);
-          apiClient.setToken(null);
+          clearAuth();
         })
         .finally(() => setIsLoading(false));
     } else {
       setIsLoading(false);
     }
-  }, []);
+
+    // Set up periodic token validation (every 5 minutes)
+    const tokenValidationInterval = setInterval(() => {
+      if (token && user) {
+        // Validate token by making a lightweight API call
+        apiClient.getCurrentUser()
+          .then(setUser)
+          .catch(() => {
+            // Token expired, clear auth
+            clearAuth();
+          });
+      }
+    }, 5 * 60 * 1000); // 5 minutes
+
+    return () => {
+      clearInterval(tokenValidationInterval);
+    };
+  }, [token, user]);
 
   const signIn = async (email: string, password: string): Promise<AuthResponse> => {
     const response = await apiClient.signIn({ email, password });
@@ -62,9 +83,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signOut = async (): Promise<void> => {
-    await apiClient.signOut();
+    try {
+      await apiClient.signOut();
+    } catch (error) {
+      // Ignore errors during signout
+    } finally {
+      clearAuth();
+    }
+  };
+
+  const clearAuth = () => {
     setToken(null);
     setUser(null);
+    apiClient.setToken(null);
+    localStorage.removeItem('auth_token');
   };
 
   const value: AuthContextType = {
@@ -75,6 +107,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signUp,
     signOut,
     isAuthenticated: !!token && !!user,
+    clearAuth,
   };
 
   return (
