@@ -10,6 +10,7 @@ interface WatchlistItemWithPrice extends WatchlistItem {
     currentPrice?: number;
     changePercent?: number;
     change?: number;
+    volume?: number;
 }
 
 const WatchlistPage = () => {
@@ -50,7 +51,8 @@ const WatchlistPage = () => {
                         ...item,
                         currentPrice: priceData.currentPrice,
                         changePercent: priceData.priceChangePercent || 0,
-                        change: priceData.priceChange || 0
+                        change: priceData.priceChange || 0,
+                        volume: priceData.volume || 0
                     };
                 } catch (error) {
                     console.error(`Failed to fetch price for ${item.symbol}:`, error);
@@ -58,7 +60,8 @@ const WatchlistPage = () => {
                         ...item,
                         currentPrice: 0,
                         changePercent: 0,
-                        change: 0
+                        change: 0,
+                        volume: 0
                     };
                 }
             });
@@ -93,48 +96,20 @@ const WatchlistPage = () => {
         return `${sign}${changePercent.toFixed(2)}%`;
     };
 
-    const generateMiniChart = (changePercent: number) => {
-        // Generate a simple line chart data
-        const points = 20;
-        const data = [];
-        const baseValue = 100;
+    const formatVolume = (volume: number) => {
+        if (volume === 0) return 'N/A';
         
-        for (let i = 0; i < points; i++) {
-            const randomVariation = (Math.random() - 0.5) * 10;
-            const trend = (changePercent / 100) * (i / points) * 20;
-            data.push(baseValue + randomVariation + trend);
+        if (volume >= 1e9) {
+            return `${(volume / 1e9).toFixed(1)}B`;
+        } else if (volume >= 1e6) {
+            return `${(volume / 1e6).toFixed(1)}M`;
+        } else if (volume >= 1e3) {
+            return `${(volume / 1e3).toFixed(1)}K`;
+        } else {
+            return volume.toString();
         }
-        
-        return data;
     };
 
-    const MiniChart = ({ changePercent }: { changePercent: number }) => {
-        const data = generateMiniChart(changePercent);
-        const max = Math.max(...data);
-        const min = Math.min(...data);
-        const range = max - min || 1;
-        
-        const points = data.map((value, index) => {
-            const x = (index / (data.length - 1)) * 60;
-            const y = 20 - ((value - min) / range) * 16;
-            return `${x},${y}`;
-        }).join(' ');
-
-        const color = changePercent >= 0 ? '#10B981' : '#F59E0B';
-
-        return (
-            <svg width="60" height="20" viewBox="0 0 60 20" className="flex-shrink-0">
-                <polyline
-                    points={points}
-                    fill="none"
-                    stroke={color}
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-            </svg>
-        );
-    };
 
     if (!isAuthenticated) {
         return (
@@ -240,9 +215,16 @@ const WatchlistPage = () => {
                                             </span>
                                         </div>
 
-                                        {/* Mini Chart */}
+                                        {/* Volume */}
                                         <div className="flex-shrink-0">
-                                            <MiniChart changePercent={item.changePercent || 0} />
+                                            <div className="text-center">
+                                                <div className="text-gray-300 text-sm font-medium">
+                                                    {formatVolume(item.volume || 0)}
+                                                </div>
+                                                <div className="text-gray-500 text-xs">
+                                                    Volume
+                                                </div>
+                                            </div>
                                         </div>
 
                                         {/* Company Name */}
