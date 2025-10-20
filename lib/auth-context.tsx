@@ -42,9 +42,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Try to get user info
       apiClient.getCurrentUser()
         .then(setUser)
-        .catch(() => {
-          // Token might be expired, clear it
-          clearAuth();
+        .catch((error) => {
+          console.log('Token validation failed:', error);
+          // Only clear auth if it's a 401 error (token expired)
+          if (error.message.includes('401') || error.message.includes('Authentication required')) {
+            clearAuth();
+          } else {
+            // For other errors, just set loading to false
+            setIsLoading(false);
+          }
         })
         .finally(() => setIsLoading(false));
     } else {
@@ -57,9 +63,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Validate token by making a lightweight API call
         apiClient.getCurrentUser()
           .then(setUser)
-          .catch(() => {
-            // Token expired, clear auth
-            clearAuth();
+          .catch((error) => {
+            console.log('Periodic token validation failed:', error);
+            // Only clear auth if it's a 401 error (token expired)
+            if (error.message.includes('401') || error.message.includes('Authentication required')) {
+              clearAuth();
+            }
           });
       }
     }, 5 * 60 * 1000); // 5 minutes
