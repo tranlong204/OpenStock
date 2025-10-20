@@ -19,7 +19,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Start with false
 
   const clearAuth = () => {
     setToken(null);
@@ -45,10 +45,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setToken(existingToken);
       apiClient.setToken(existingToken);
     }
-    
-    // Always set loading to false immediately
-    console.log('Setting loading to false');
-    setIsLoading(false);
   }, []); // Empty dependency array to run only once on mount
 
   const signIn = async (email: string, password: string): Promise<AuthResponse> => {
