@@ -22,9 +22,16 @@ const WatchlistButton = ({
     }, [added, type]);
 
     const handleClick = async () => {
+        console.log('WatchlistButton: handleClick called');
+        console.log('WatchlistButton: isLoading =', isLoading);
+        console.log('WatchlistButton: isAuthenticated =', isAuthenticated);
+        console.log('WatchlistButton: added =', added);
+        console.log('WatchlistButton: symbol =', symbol);
+        
         if (isLoading) return;
         
         if (!isAuthenticated) {
+            console.log('WatchlistButton: User not authenticated, showing error toast');
             toast.error("Please sign in to use watchlist features");
             return;
         }

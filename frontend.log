@@ -597,3 +597,26 @@ Layout: isLoading is true, showing loading spinner
  GET /stocks/TSLA 200 in 269ms
  ✓ Compiled in 22ms
  GET /favicon.ico?favicon.0d8d4eae.ico 200 in 258ms
+ ✓ Compiled /stocks/[symbol] in 35ms
+Layout: isLoading is true, showing loading spinner
+ GET /stocks/TSLA 200 in 323ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 234ms
+ GET /watchlist 200 in 46ms
+ GET / 200 in 52ms
+ GET / 200 in 49ms
+ GET /watchlist 200 in 47ms
+Layout: isLoading is true, showing loading spinner
+ GET /stocks/TSLA 200 in 75ms
+ GET /sign-in 200 in 41ms
+ GET / 200 in 36ms
+ GET / 200 in 28ms
+ GET /watchlist 200 in 66ms
+Layout: isLoading is true, showing loading spinner
+ GET /stocks/TSLA 200 in 73ms
+ GET /sign-in 200 in 37ms
+ GET / 200 in 40ms
+ GET / 200 in 29ms
+ GET /watchlist 200 in 59ms
+ GET /sign-in 200 in 90ms
+ GET / 200 in 38ms
+[?25h

@@ -10,22 +10,28 @@ interface WatchlistButtonWrapperProps {
 }
 
 export default function WatchlistButtonWrapper({ symbol }: WatchlistButtonWrapperProps) {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, user } = useAuth();
     const [isInWatchlist, setIsInWatchlist] = useState<boolean>(false);
     const [isLoadingWatchlistStatus, setIsLoadingWatchlistStatus] = useState<boolean>(true);
 
     useEffect(() => {
         const checkWatchlistStatus = async () => {
+            console.log('WatchlistButtonWrapper: isAuthenticated =', isAuthenticated);
+            console.log('WatchlistButtonWrapper: user =', user);
+            
             if (!isAuthenticated) {
+                console.log('WatchlistButtonWrapper: User not authenticated, skipping watchlist check');
                 setIsLoadingWatchlistStatus(false);
                 return;
             }
 
             try {
+                console.log('WatchlistButtonWrapper: Checking watchlist status for', symbol);
                 const status = await apiClient.isInWatchlist(symbol.toUpperCase());
+                console.log('WatchlistButtonWrapper: Watchlist status =', status);
                 setIsInWatchlist(status);
             } catch (error) {
-                console.error('Failed to check watchlist status:', error);
+                console.error('WatchlistButtonWrapper: Failed to check watchlist status:', error);
                 setIsInWatchlist(false);
             } finally {
                 setIsLoadingWatchlistStatus(false);
@@ -33,7 +39,7 @@ export default function WatchlistButtonWrapper({ symbol }: WatchlistButtonWrappe
         };
 
         checkWatchlistStatus();
-    }, [symbol, isAuthenticated]);
+    }, [symbol, isAuthenticated, user]);
 
     const handleWatchlistChange = (symbol: string, isAdded: boolean) => {
         setIsInWatchlist(isAdded);
