@@ -21,6 +21,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const clearAuth = () => {
+    setToken(null);
+    setUser(null);
+    apiClient.setToken(null);
+    localStorage.removeItem('auth_token');
+  };
+
   useEffect(() => {
     // Set up auth error callback
     apiClient.setOnAuthError(() => {
@@ -90,13 +97,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } finally {
       clearAuth();
     }
-  };
-
-  const clearAuth = () => {
-    setToken(null);
-    setUser(null);
-    apiClient.setToken(null);
-    localStorage.removeItem('auth_token');
   };
 
   const value: AuthContextType = {
