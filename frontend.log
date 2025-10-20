@@ -228,3 +228,247 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
  GET /sign-in 200 in 55ms
  GET /sign-in 200 in 335ms
  GET /favicon.ico?favicon.0d8d4eae.ico 200 in 246ms
+ GET /sign-in 200 in 130ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 230ms
+ ✓ Compiled / in 19ms
+ GET / 200 in 120ms
+ GET / 200 in 46ms
+ GET /sign-in 200 in 34ms
+ GET /sign-in 200 in 28ms
+ GET / 200 in 39ms
+ GET / 200 in 36ms
+ GET /sign-in 200 in 34ms
+ GET /sign-in 200 in 33ms
+ ✓ Compiled in 102ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled /sign-in in 73ms
+ GET /sign-in 200 in 274ms
+ GET /sign-in 200 in 466ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 229ms
+ ✓ Compiled / in 12ms
+ GET / 200 in 86ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 85ms
+ GET /sign-in 200 in 290ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 231ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 78ms
+ GET /sign-in 200 in 216ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 225ms
+ GET / 200 in 46ms
+ GET / 200 in 85ms
+ GET /sign-in 200 in 52ms
+ GET /sign-in 200 in 45ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 125ms
+ GET /sign-in 200 in 394ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 231ms
+ GET / 200 in 43ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 73ms
+ GET /sign-in 200 in 240ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 229ms
+ GET / 200 in 59ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 65ms
+ GET /sign-in 200 in 233ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 264ms
+ GET / 200 in 113ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 94ms
+ GET /sign-in 200 in 297ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 239ms
+ GET / 200 in 56ms
+ ✓ Compiled /sign-in in 22ms
+ ✓ Compiled in 183ms
+ GET /sign-in 200 in 399ms
+ GET /sign-in 200 in 362ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 228ms
+ ✓ Compiled / in 17ms
+ GET / 200 in 210ms
+Layout: isLoading is true, showing loading spinner
+ GET / 200 in 223ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 80ms
+ GET /sign-in 200 in 350ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 251ms
+Layout: isLoading is true, showing loading spinner
+ GET / 200 in 43ms
+ ✓ Compiled /sign-in in 66ms
+ GET /sign-in 200 in 55ms
+ ✓ Compiled in 228ms
+ ⨯ Error: useAuth must be used within an AuthProvider
+    at useAuth (lib/auth-context.tsx:101:11)
+    at Layout (app/(auth)/layout.tsx:11:51)
+   99 |   const context = useContext(AuthContext);
+  100 |   if (context === undefined) {
+> 101 |     throw new Error('useAuth must be used within an AuthProvider');
+      |           ^
+  102 |   }
+  103 |   return context;
+  104 | } {
+  digest: '3044717549'
+}
+ ⨯ Error: useAuth must be used within an AuthProvider
+    at useAuth (lib/auth-context.tsx:101:11)
+    at Layout (app/(auth)/layout.tsx:11:51)
+   99 |   const context = useContext(AuthContext);
+  100 |   if (context === undefined) {
+> 101 |     throw new Error('useAuth must be used within an AuthProvider');
+      |           ^
+  102 |   }
+  103 |   return context;
+  104 | } {
+  digest: '3044717549'
+}
+ GET /sign-in 200 in 344ms
+ ⨯ Error: useAuth must be used within an AuthProvider
+    at useAuth (lib/auth-context.tsx:101:11)
+    at Layout (app/(auth)/layout.tsx:11:51)
+   99 |   const context = useContext(AuthContext);
+  100 |   if (context === undefined) {
+> 101 |     throw new Error('useAuth must be used within an AuthProvider');
+      |           ^
+  102 |   }
+  103 |   return context;
+  104 | } {
+  digest: '3044717549'
+}
+ GET /sign-in 500 in 323ms
+ GET /sign-in 200 in 66ms
+ GET /favicon.ico 200 in 254ms
+ ✓ Compiled / in 19ms
+ ⨯ Error: useAuth must be used within an AuthProvider
+    at useAuth (lib/auth-context.tsx:101:11)
+    at Layout (app/(root)/layout.tsx:10:57)
+   99 |   const context = useContext(AuthContext);
+  100 |   if (context === undefined) {
+> 101 |     throw new Error('useAuth must be used within an AuthProvider');
+      |           ^
+  102 |   }
+  103 |   return context;
+  104 | } {
+  digest: '1950555719'
+}
+ GET / 500 in 225ms
+ ⨯ Error: useAuth must be used within an AuthProvider
+    at useAuth (lib/auth-context.tsx:101:11)
+    at Layout (app/(root)/layout.tsx:10:57)
+   99 |   const context = useContext(AuthContext);
+  100 |   if (context === undefined) {
+> 101 |     throw new Error('useAuth must be used within an AuthProvider');
+      |           ^
+  102 |   }
+  103 |   return context;
+  104 | } {
+  digest: '1950555719'
+}
+ GET / 500 in 56ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled /sign-in in 69ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 0ms
+ GET /sign-in 200 in 445ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 234ms
+ ✓ Compiled / in 13ms
+ GET / 200 in 219ms
+ GET / 200 in 43ms
+ GET /sign-in 200 in 171ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 244ms
+ GET / 200 in 45ms
+ GET / 200 in 47ms
+ ✓ Compiled /watchlist in 21ms
+ GET /watchlist 200 in 57ms
+ ✓ Compiled in 144ms
+ ✓ Compiled in 75ms
+ ✓ Compiled in 70ms
+ ✓ Compiled in 111ms
+ ✓ Compiled in 72ms
+ GET /watchlist 200 in 307ms
+ GET /sign-in 200 in 60ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 248ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 228ms
+ ✓ Compiled in 61ms
+ GET / 200 in 48ms
+ GET / 200 in 38ms
+ GET /watchlist 200 in 109ms
+ GET / 200 in 47ms
+ GET /watchlist 200 in 177ms
+ GET /sign-in 200 in 71ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 264ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 225ms
+ GET /sign-in 200 in 154ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 242ms
+ GET / 200 in 43ms
+ GET / 200 in 42ms
+ GET /watchlist 200 in 55ms
+ GET /watchlist 200 in 70ms
+ GET /sign-in 200 in 60ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 258ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 231ms
+ GET / 200 in 37ms
+ GET / 200 in 34ms
+ GET /watchlist 200 in 87ms
+ ✓ Compiled in 109ms
+ ✓ Compiled in 72ms
+ ✓ Compiled in 64ms
+ ✓ Compiled in 104ms
+ GET / 200 in 63ms
+ GET /watchlist 200 in 300ms
+ GET /sign-in 200 in 116ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 127ms
+ GET /watchlist 200 in 100ms
+ GET /sign-in 200 in 65ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 256ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 230ms
+ GET / 200 in 40ms
+ GET / 200 in 31ms
+ GET /watchlist 200 in 55ms
+ GET /watchlist 200 in 164ms
+ GET /sign-in 200 in 81ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 257ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 228ms
+ GET / 200 in 44ms
+ GET / 200 in 32ms
+ GET /watchlist 200 in 63ms
+ GET / 200 in 68ms
+ GET /sign-in 200 in 47ms
+ GET / 200 in 35ms
+ GET / 200 in 31ms
+ ✓ Compiled /stocks/[symbol] in 26ms
+ GET /stocks/TSLA 200 in 59ms
+ GET /stocks/AAPL 200 in 41ms
+ GET /watchlist 200 in 35ms
+ GET /watchlist 200 in 81ms
+ GET /sign-in 200 in 66ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 251ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 250ms
+ GET / 200 in 66ms
+ GET / 200 in 42ms
+ GET /watchlist 200 in 56ms
+ GET /watchlist 200 in 71ms
+ GET /sign-in 200 in 55ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 253ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 233ms
+ GET / 200 in 34ms
+ GET / 200 in 33ms
+ GET /watchlist 200 in 48ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 119ms
+Layout: isLoading is true, showing loading spinner
+ GET /watchlist 200 in 428ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 254ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 86ms
+Layout: isLoading is true, showing loading spinner
+Layout: isLoading is true, showing loading spinner
+ GET /watchlist 200 in 587ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 261ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 71ms
+Layout: isLoading is true, showing loading spinner
+Layout: isLoading is true, showing loading spinner
+ GET /watchlist 200 in 249ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 257ms
+ GET / 200 in 80ms

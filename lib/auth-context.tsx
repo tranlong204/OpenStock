@@ -19,7 +19,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false); // Start with false
+  const [isLoading, setIsLoading] = useState(true); // Start with true to prevent immediate redirect
 
   const clearAuth = () => {
     setToken(null);
@@ -37,14 +37,35 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       clearAuth();
     });
 
-    // Check for existing token on mount
-    const existingToken = localStorage.getItem('auth_token');
-    console.log('Existing token:', existingToken ? 'exists' : 'none');
-    
-    if (existingToken) {
-      setToken(existingToken);
-      apiClient.setToken(existingToken);
-    }
+    // Check for existing token on mount and validate it
+    const initializeAuth = async () => {
+      const existingToken = localStorage.getItem('auth_token');
+      console.log('Existing token:', existingToken ? 'exists' : 'none');
+      
+      if (existingToken) {
+        setToken(existingToken);
+        apiClient.setToken(existingToken);
+        
+        // Validate token by fetching user profile
+        try {
+          const userProfile = await apiClient.getCurrentUser();
+          if (userProfile) {
+            setUser(userProfile);
+            console.log('Token validated, user loaded:', userProfile.email);
+          } else {
+            console.log('Token validation failed, clearing auth');
+            clearAuth();
+          }
+        } catch (error) {
+          console.log('Token validation failed:', error);
+          clearAuth();
+        }
+      }
+      
+      setIsLoading(false);
+    };
+
+    initializeAuth();
   }, []); // Empty dependency array to run only once on mount
 
   const signIn = async (email: string, password: string): Promise<AuthResponse> => {
@@ -53,6 +74,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setToken(response.token);
       setUser(response.user);
       apiClient.setToken(response.token);
+      localStorage.setItem('auth_token', response.token);
     }
     return response;
   };
@@ -63,6 +85,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setToken(response.token);
       setUser(response.user);
       apiClient.setToken(response.token);
+      localStorage.setItem('auth_token', response.token);
     }
     return response;
   };
