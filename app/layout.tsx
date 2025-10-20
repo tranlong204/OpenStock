@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import {Toaster} from "@/components/ui/sonner";
 import { AuthProvider } from "@/lib/auth-context";
+import SessionTimeoutWarning from "@/components/SessionTimeoutWarning";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,6 +32,7 @@ export default function RootLayout({
             >
                 <AuthProvider>
                     {children}
+                    <SessionTimeoutWarning warningTimeMinutes={5} />
                 </AuthProvider>
                 <Toaster/>
             </body>

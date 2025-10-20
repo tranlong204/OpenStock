@@ -123,3 +123,108 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
  ✓ Compiled /stocks/[symbol] in 47ms
  GET /stocks/TSLA 200 in 195ms
  GET /stocks/TSLA 200 in 87ms
+ GET /stocks/TSLA 200 in 205ms
+ GET /sign-in 200 in 47ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 278ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 228ms
+ ✓ Compiled / in 14ms
+ GET / 200 in 88ms
+ GET / 200 in 36ms
+ ✓ Compiled /watchlist in 252ms
+ GET /watchlist 200 in 286ms
+ GET /stocks/TSLA 200 in 75ms
+ GET /sign-in 200 in 35ms
+ GET / 200 in 38ms
+ GET / 200 in 32ms
+ GET /watchlist 200 in 53ms
+ GET /stocks/TSLA 200 in 69ms
+ GET /sign-in 200 in 35ms
+ GET / 200 in 44ms
+ GET / 200 in 32ms
+ GET /watchlist 200 in 56ms
+ ✓ Compiled in 119ms
+ GET /watchlist 200 in 276ms
+ GET /sign-in 200 in 38ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 236ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 236ms
+ GET / 200 in 35ms
+ GET / 200 in 33ms
+ GET /watchlist 200 in 58ms
+ ✓ Compiled in 87ms
+ GET /watchlist 200 in 266ms
+ GET /sign-in 200 in 33ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 234ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 229ms
+ GET / 200 in 39ms
+ GET / 200 in 29ms
+ GET /watchlist 200 in 56ms
+ GET /stocks/TSLA 200 in 61ms
+ GET /sign-in 200 in 36ms
+ GET / 200 in 34ms
+ GET / 200 in 31ms
+ GET /watchlist 200 in 59ms
+ GET /watchlist 200 in 49ms
+ GET / 200 in 81ms
+ GET /sign-in 200 in 31ms
+ GET / 200 in 38ms
+ GET / 200 in 28ms
+ GET /stocks/TSLA 200 in 55ms
+ GET /watchlist 200 in 41ms
+ GET /stocks/AAPL 200 in 44ms
+ GET /watchlist 200 in 36ms
+ GET /watchlist 200 in 103ms
+ GET /sign-in 200 in 43ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 243ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 224ms
+ GET / 200 in 41ms
+ GET / 200 in 31ms
+ GET /watchlist 200 in 59ms
+ GET / 200 in 49ms
+ GET /watchlist 200 in 58ms
+ GET /stocks/TSLA 200 in 75ms
+ GET /stocks/TSLA 200 in 112ms
+ GET /sign-in 200 in 40ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 266ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 227ms
+ GET / 200 in 44ms
+ GET / 200 in 33ms
+ GET / 200 in 138ms
+ GET /sign-in 200 in 38ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 254ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 228ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 110ms
+ GET /sign-in 200 in 329ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 238ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 78ms
+ GET /sign-in 200 in 208ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 236ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/api-client.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 72ms
+ GET /sign-in 200 in 210ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 233ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/api-client.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 69ms
+ GET /sign-in 200 in 246ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 229ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 69ms
+ GET /sign-in 200 in 221ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 227ms
+ ⚠ Fast Refresh had to perform a full reload when ./lib/auth-context.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 66ms
+ GET /sign-in 200 in 217ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 227ms
+ ✓ Compiled /sign-in in 25ms
+ GET /sign-in 200 in 143ms
+ GET /sign-in 200 in 42ms
+ GET /sign-in 200 in 53ms
+ GET /sign-in 200 in 50ms
+ ✓ Compiled /sign-in in 130ms
+ GET /sign-in 200 in 89ms
+ ✓ Compiled in 352ms
+ GET /sign-in 200 in 429ms
+ GET /sign-in 200 in 55ms
+ GET /sign-in 200 in 335ms
+ GET /favicon.ico?favicon.0d8d4eae.ico 200 in 246ms
