@@ -96,7 +96,8 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
 };
 
 export const HEATMAP_WIDGET_CONFIG = {
-    dataSource: 'SPX500',
+    // Use broader US market dataset to improve accuracy
+    dataSource: 'US',
     blockSize: 'market_cap_basic',
     blockColor: 'change',
     grouping: 'sector',
@@ -104,7 +105,8 @@ export const HEATMAP_WIDGET_CONFIG = {
     locale: 'en',
     symbolUrl: '',
     colorTheme: 'dark',
-    exchanges: [],
+    // Explicitly include major US exchanges
+    exchanges: ['NYSE', 'NASDAQ', 'AMEX'],
     hasTopBar: false,
     isDataSetEnabled: false,
     isZoomEnabled: true,
