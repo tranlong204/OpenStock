@@ -44,36 +44,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (existingToken) {
       setToken(existingToken);
       apiClient.setToken(existingToken);
-      // Don't validate token on mount - just set loading to false
-      // Token validation will happen on first API call
-      console.log('Token found, setting loading to false');
-      setIsLoading(false);
-    } else {
-      console.log('No token, setting loading to false');
-      setIsLoading(false);
     }
-
-    // Set up periodic token validation (every 5 minutes)
-    const tokenValidationInterval = setInterval(() => {
-      if (token && user) {
-        console.log('Running periodic token validation');
-        // Validate token by making a lightweight API call
-        apiClient.getCurrentUser()
-          .then(setUser)
-          .catch((error) => {
-            console.log('Periodic token validation failed:', error);
-            // Only clear auth if it's a 401 error (token expired)
-            if (error.message.includes('401') || error.message.includes('Authentication required')) {
-              clearAuth();
-            }
-          });
-      }
-    }, 5 * 60 * 1000); // 5 minutes
-
-    return () => {
-      clearInterval(tokenValidationInterval);
-    };
-  }, [token, user]);
+    
+    // Always set loading to false immediately
+    console.log('Setting loading to false');
+    setIsLoading(false);
+  }, []); // Empty dependency array to run only once on mount
 
   const signIn = async (email: string, password: string): Promise<AuthResponse> => {
     const response = await apiClient.signIn({ email, password });
