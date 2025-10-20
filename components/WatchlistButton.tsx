@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { apiClient } from "@/lib/api-client";
 import { useAuth } from "@/lib/auth-context";
 import { toast } from "sonner";
@@ -15,6 +15,12 @@ const WatchlistButton = ({
     const [added, setAdded] = useState<boolean>(!!isInWatchlist);
     const [isLoading, setIsLoading] = useState(false);
     const { isAuthenticated } = useAuth();
+
+    // Update added state when isInWatchlist prop changes
+    useEffect(() => {
+        console.log('WatchlistButton: isInWatchlist prop changed to', isInWatchlist);
+        setAdded(!!isInWatchlist);
+    }, [isInWatchlist]);
 
     const label = useMemo(() => {
         if (type === "icon") return added ? "" : "";
