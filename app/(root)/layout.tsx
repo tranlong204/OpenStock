@@ -17,6 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     }, [isAuthenticated, isLoading, router]);
 
     if (isLoading) {
+        console.log('Layout: isLoading is true, showing loading spinner');
         return (
             <main className="min-h-screen text-gray-400">
                 <div className="flex items-center justify-center min-h-screen">
