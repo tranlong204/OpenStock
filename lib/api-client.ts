@@ -91,6 +91,9 @@ class ApiClient {
     
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
       ...(options.headers as Record<string, string>),
     };
 
@@ -157,7 +160,9 @@ class ApiClient {
   }
 
   async getStockPrice(symbol: string): Promise<StockPriceDto> {
-    return this.request<StockPriceDto>(`/api/stocks/price/${symbol}`);
+    // Add cache-busting parameter to ensure fresh data
+    const timestamp = Date.now();
+    return this.request<StockPriceDto>(`/api/stocks/price/${symbol}?t=${timestamp}`);
   }
 
   // News endpoints
