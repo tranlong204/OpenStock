@@ -186,6 +186,10 @@ class ApiClient {
     });
   }
 
+  async isInWatchlist(symbol: string): Promise<boolean> {
+    return this.request<boolean>(`/api/watchlist/check/${symbol}`);
+  }
+
   // User endpoints
   async getCurrentUser(): Promise<User> {
     return this.request<User>('/api/user/profile');
