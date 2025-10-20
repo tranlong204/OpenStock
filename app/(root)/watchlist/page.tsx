@@ -11,6 +11,10 @@ interface WatchlistItemWithPrice extends WatchlistItem {
     changePercent?: number;
     change?: number;
     volume?: number;
+    openPrice?: number;
+    highPrice?: number;
+    lowPrice?: number;
+    previousClose?: number;
 }
 
 const WatchlistPage = () => {
@@ -52,7 +56,11 @@ const WatchlistPage = () => {
                         currentPrice: priceData.currentPrice,
                         changePercent: priceData.priceChangePercent || 0,
                         change: priceData.priceChange || 0,
-                        volume: priceData.volume || 0
+                        volume: priceData.volume || 0,
+                        openPrice: priceData.openPrice || 0,
+                        highPrice: priceData.highPrice || 0,
+                        lowPrice: priceData.lowPrice || 0,
+                        previousClose: priceData.previousClose || 0
                     };
                 } catch (error) {
                     console.error(`Failed to fetch price for ${item.symbol}:`, error);
@@ -61,7 +69,11 @@ const WatchlistPage = () => {
                         currentPrice: 0,
                         changePercent: 0,
                         change: 0,
-                        volume: 0
+                        volume: 0,
+                        openPrice: 0,
+                        highPrice: 0,
+                        lowPrice: 0,
+                        previousClose: 0
                     };
                 }
             });
@@ -205,49 +217,95 @@ const WatchlistPage = () => {
                         const changeColor = isPositive ? 'text-green-400' : 'text-orange-400';
                         
                         return (
-                            <div key={item.id} className="px-6 py-4 hover:bg-gray-700/50 transition-colors">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-4 flex-1">
-                                        {/* Stock Symbol */}
-                                        <div className="flex-shrink-0">
-                                            <span className="text-gray-100 font-semibold text-lg">
+                            <div key={item.id} className="px-6 py-6 hover:bg-gray-700/50 transition-colors">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                    {/* Left Column - Symbol and Name */}
+                                    <div className="space-y-2">
+                                        <div>
+                                            <div className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                                                Symbol
+                                            </div>
+                                            <div className="text-gray-100 font-bold text-xl">
                                                 {item.symbol}
-                                            </span>
-                                        </div>
-
-                                        {/* Volume */}
-                                        <div className="flex-shrink-0">
-                                            <div className="text-center">
-                                                <div className="text-gray-300 text-sm font-medium">
-                                                    {formatVolume(item.volume || 0)}
-                                                </div>
-                                                <div className="text-gray-500 text-xs">
-                                                    Volume
-                                                </div>
                                             </div>
                                         </div>
-
-                                        {/* Company Name */}
-                                        <div className="flex-1 min-w-0">
-                                            <p className="text-gray-300 text-sm truncate">
+                                        <div>
+                                            <div className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                                                Name
+                                            </div>
+                                            <div className="text-gray-300 text-sm">
                                                 {item.company}
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-6">
-                                        {/* Price and Change */}
-                                        <div className="text-right">
-                                            <div className="text-gray-100 font-semibold text-lg">
-                                                ${formatPrice(item.currentPrice || 0)}
+                                    {/* Middle Column - Price Data */}
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-3">
+                                            <div>
+                                                <div className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                                                    Current Price
+                                                </div>
+                                                <div className="text-gray-100 font-semibold text-lg">
+                                                    ${formatPrice(item.currentPrice || 0)}
+                                                </div>
                                             </div>
-                                            <div className={`text-sm font-medium ${changeColor}`}>
-                                                {formatChangePercent(item.changePercent || 0)}
+                                            <div>
+                                                <div className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                                                    Open Price
+                                                </div>
+                                                <div className="text-gray-300 text-sm">
+                                                    ${formatPrice(item.openPrice || 0)}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                                                    High Price
+                                                </div>
+                                                <div className="text-green-400 text-sm font-medium">
+                                                    ${formatPrice(item.highPrice || 0)}
+                                                </div>
                                             </div>
                                         </div>
+                                        <div className="space-y-3">
+                                            <div>
+                                                <div className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                                                    Change
+                                                </div>
+                                                <div className={`text-sm font-medium ${changeColor}`}>
+                                                    {formatChangePercent(item.changePercent || 0)}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                                                    Low Price
+                                                </div>
+                                                <div className="text-red-400 text-sm font-medium">
+                                                    ${formatPrice(item.lowPrice || 0)}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                                                    Previous Close
+                                                </div>
+                                                <div className="text-gray-300 text-sm">
+                                                    ${formatPrice(item.previousClose || 0)}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        {/* Actions */}
-                                        <div className="flex items-center gap-2">
+                                    {/* Right Column - Volume and Actions */}
+                                    <div className="flex flex-col justify-between">
+                                        <div>
+                                            <div className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                                                Volume
+                                            </div>
+                                            <div className="text-gray-300 text-sm font-medium">
+                                                {formatVolume(item.volume || 0)}
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-2 mt-4">
                                             <WatchlistButton
                                                 symbol={item.symbol}
                                                 company={item.company}
