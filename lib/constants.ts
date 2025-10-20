@@ -96,8 +96,8 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
 };
 
 export const HEATMAP_WIDGET_CONFIG = {
-    // Use broader US market dataset to improve accuracy
-    dataSource: 'US',
+    // Use NASDAQ data source for better accuracy with tech stocks like AVGO
+    dataSource: 'NASDAQ',
     blockSize: 'market_cap_basic',
     blockColor: 'change',
     grouping: 'sector',
@@ -105,10 +105,9 @@ export const HEATMAP_WIDGET_CONFIG = {
     locale: 'en',
     symbolUrl: '',
     colorTheme: 'dark',
-    // Explicitly include major US exchanges
-    exchanges: ['NYSE', 'NASDAQ', 'AMEX'],
+    exchanges: [],
     hasTopBar: false,
-    isDataSetEnabled: false,
+    isDataSetEnabled: true, // Enable dataset for better data accuracy
     isZoomEnabled: true,
     hasSymbolTooltip: true,
     isMonoSize: false,
