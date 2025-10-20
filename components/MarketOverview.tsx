@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { apiClient } from '@/lib/api-client';
+import TradingViewWidget from '@/components/TradingViewWidget';
 
 interface MarketStock {
   symbol: string;
@@ -24,6 +25,12 @@ const MARKET_STOCKS = [
   { symbol: 'META', name: 'Meta Platforms', sector: 'Technology' },
   { symbol: 'ORCL', name: 'Oracle Corp', sector: 'Technology' },
   { symbol: 'INTC', name: 'Intel Corp', sector: 'Technology' },
+  { symbol: 'NVDA', name: 'NVIDIA', sector: 'Technology' },
+  { symbol: 'AMZN', name: 'Amazon', sector: 'Services' },
+  { symbol: 'TSLA', name: 'Tesla', sector: 'Consumer Durables' },
+  { symbol: 'JPM', name: 'JPMorgan Chase', sector: 'Financial' },
+  { symbol: 'BAC', name: 'Bank of America', sector: 'Financial' },
+  { symbol: 'WFC', name: 'Wells Fargo', sector: 'Financial' },
 ];
 
 const MarketOverview: React.FC<MarketOverviewProps> = ({ 
@@ -192,22 +199,37 @@ const MarketOverview: React.FC<MarketOverviewProps> = ({
         ))}
       </div>
 
-      {/* Chart Placeholder */}
+      {/* Chart - Real TradingView Chart */}
       <div style={{
         height: '200px',
         margin: '16px 20px',
-        backgroundColor: '#1e222d',
         borderRadius: '8px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: '1px solid #2a2e39'
+        overflow: 'hidden'
       }}>
-        <div style={{ textAlign: 'center', color: '#787b86' }}>
-          <div style={{ fontSize: '24px', marginBottom: '8px' }}>📈</div>
-          <div style={{ fontSize: '14px' }}>Market Chart</div>
-          <div style={{ fontSize: '12px', opacity: 0.7 }}>Real-time data from our backend</div>
-        </div>
+        <TradingViewWidget
+          scriptUrl="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
+          config={{
+            autosize: true,
+            symbol: "NASDAQ:AAPL",
+            interval: "D",
+            timezone: "Etc/UTC",
+            theme: "dark",
+            style: "1",
+            locale: "en",
+            toolbar_bg: "#f1f3f6",
+            enable_publishing: false,
+            hide_top_toolbar: true,
+            hide_legend: false,
+            save_image: false,
+            container_id: "tradingview_chart",
+            studies: [],
+            backgroundColor: "#131722",
+            gridColor: "#2a2e39",
+            hide_volume: true,
+            height: 200
+          }}
+          height={200}
+        />
       </div>
 
       {/* Time Range Filters */}
@@ -256,7 +278,9 @@ const MarketOverview: React.FC<MarketOverviewProps> = ({
         maxHeight: '300px',
         overflowY: 'auto'
       }}>
-        {stocks.map((stock) => (
+        {stocks
+          .filter(stock => stock.sector === selectedTab)
+          .map((stock) => (
           <div
             key={stock.symbol}
             style={{
