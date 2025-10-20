@@ -44,28 +44,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (existingToken) {
       setToken(existingToken);
       apiClient.setToken(existingToken);
-      // Try to get user info
-      apiClient.getCurrentUser()
-        .then((user) => {
-          console.log('Token validation successful:', user);
-          setUser(user);
-        })
-        .catch((error) => {
-          console.log('Token validation failed:', error);
-          // Only clear auth if it's a 401 error (token expired)
-          if (error.message.includes('401') || error.message.includes('Authentication required')) {
-            console.log('Clearing auth due to 401 error');
-            clearAuth();
-          } else {
-            // For other errors, just set loading to false
-            console.log('Setting loading to false due to non-401 error');
-            setIsLoading(false);
-          }
-        })
-        .finally(() => {
-          console.log('Setting loading to false');
-          setIsLoading(false);
-        });
+      // Don't validate token on mount - just set loading to false
+      // Token validation will happen on first API call
+      console.log('Token found, setting loading to false');
+      setIsLoading(false);
     } else {
       console.log('No token, setting loading to false');
       setIsLoading(false);
